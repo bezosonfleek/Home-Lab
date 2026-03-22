@@ -1,0 +1,4 @@
+proxmox_node = "node-name"
+vm_id        = 100 #any free ids
+vm_name      = "your-vm-name"
+vm_password  = "your-password"
