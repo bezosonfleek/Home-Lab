@@ -284,7 +284,3 @@ Any other name requires explicit `-var-file=filename.tfvars` during apply.
 ├── terraform.tfvars    # Your actual values (do not commit secrets)
 └── outputs.tf          # Output definitions
 ```
-
----
-
-> 💡 **Tip:** Add `terraform.tfvars` to your `.gitignore` to avoid leaking API tokens and credentials.
