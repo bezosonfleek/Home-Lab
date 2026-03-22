@@ -1,6 +1,6 @@
 variable "proxmox_node" {
   type = string
-  default = "sakoracorp"
+  default = "your-node-name"
 }
 
 variable "vm_id" {
