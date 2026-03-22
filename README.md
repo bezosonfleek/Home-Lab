@@ -1,6 +1,6 @@
-# 🏠 Home Lab
+#  Home Lab
 
-A collection of projects, configurations, and experiments from my personal home lab — covering infrastructure automation, self-hosting, networking, security, and more.
+A collection of projects, configurations, and experiments from my personal home lab - covering infrastructure automation, self-hosting, networking, security, and more.
 
 ---
 
@@ -8,13 +8,13 @@ A collection of projects, configurations, and experiments from my personal home 
 
 | Folder | Description |
 |---|---|
-| [`proxmox/`](./proxmox/) | VM automation with Terraform & Cloud-Init on Proxmox VE |
+| [`Proxmox/`](./Proxmox/) | VM automation with Terraform & Cloud-Init on Proxmox VE |
 
 > More projects will be added as the lab grows.
 
 ---
 
-## 🧭 Goals
+##  Goals
 
 - Build hands-on experience with real infrastructure tooling
 - Document solutions to problems encountered along the way
@@ -22,7 +22,7 @@ A collection of projects, configurations, and experiments from my personal home 
 
 ---
 
-## 📌 Notes
+##  Notes
 
 - Each subfolder contains its own `README.md` with setup instructions and lessons learned
-- Credentials and secrets are never committed — check each project's `.gitignore`
+- Credentials and secrets are never committed - check each project's `.gitignore`
