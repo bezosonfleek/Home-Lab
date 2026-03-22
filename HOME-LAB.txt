@@ -1,0 +1,28 @@
+HOME LAB
+
+1. Cloud
+
+-Build a Kubernetes Cluster: Use Talos OS or Ubuntu Server to create a 3-node K8s cluster. This teaches you container orchestration, which is the backbone of modern Cloud roles.
+-Terraform + Proxmox: Stop clicking "Create VM." Use the Telmate/Proxmox Terraform Provider to spin up and destroy your lab environment using code. This mimics how engineers manage AWS/Azure.
+-S3 Compatible Storage: Deploy MinIO in a Linux Container (LXC). This gives you a local version of AWS S3 to store your Terraform state files or backup data.
+
+2. Sysadmin
+
+-Identity Management: Deploy Active Directory (Windows Server) or FreeIPA (Linux). Connect all your other Lab services to this for "Single Sign-On."
+-Infrastructure Monitoring: Set up a Prometheus and Grafana stack. Create dashboards to monitor your Proxmox CPU/RAM usage and the health of your VMs.
+-Centralized Logging: Install Loki/Graylog instance. Point your Wazuh logs and Linux syslog here to learn how to hunt for errors across multiple servers.
+
+3. Cybersecurity
+
+-The SOC Pipeline: Integrate Wazuh with TheHive (Incident Response) and Cortex (Analyzers). When Wazuh detects a "Brute Force" on your SSH, it should automatically open a "Case" in TheHive.
+-Vulnerability Scanning: Deploy Greenbone (OpenVAS). Run weekly scans against your other VMs to find outdated packages or weak SSH configs.
+-Network Segregation: Use Proxmox "Bridges" and pfSense/OPNsense to create a "DMZ" (isolated network). Put your public-facing web servers in the DMZ and your database in a "Private" subnet.
+
+4. Network & DevOps
+
+-Infrastructure CI/CD: Set up a GitHub Actions Runner or GitLab Runner on a VM. Every time you push code to your AWS-Cloud-Projects repo, have it automatically trigger a script in your Lab.
+-Reverse Proxy: Deploy Nginx Proxy Manager or Traefik. Learn how to manage SSL certificates (Let's Encrypt) for all your internal tools so you don't get "Not Secure" browser warnings.
+
+Phase 1 Project: 
+
+"The Automated Web Stack": Create a Terraform script that spins up 1 Ubuntu VM, installs Nginx via an Ansible playbook, and automatically registers it as a new agent in your Wazuh manager.
