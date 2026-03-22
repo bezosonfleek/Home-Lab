@@ -1,9 +1,0 @@
-setting up pfSense
-
--Download from official site and unzip
--Edit virtual network editors to ensure two interfaces (Host-only for LAN and with DHCP disabled, Bridged for WAN)
--Configure settings before booting: Ensure at least 2 processors & 1GB RAM.
--Set Bridged Adapter and add a second adapter that is host only
--Default configurations...
-
--GUI Accessible http://192.168.1.1
