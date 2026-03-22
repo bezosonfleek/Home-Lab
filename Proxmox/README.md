@@ -1,22 +1,22 @@
 # 🖥️ Proxmox VM Automation with Terraform & Cloud-Init
 
-> Automate the deployment of multiple Ubuntu Server instances on Proxmox VE using Terraform — with Cloud-Init provisioning and Linked Clones for storage efficiency.
+> Automate the deployment of multiple Ubuntu Server instances on Proxmox VE using Terraform - with Cloud-Init provisioning and Linked Clones for storage efficiency.
 
 ---
 
-## 📋 Table of Contents
+##  Table of Contents
 
 - [Features](#-features)
 - [Prerequisites](#-prerequisites)
-- [Part 1 — Proxmox Setup](#part-1--proxmox-setup)
-- [Part 2 — Provider Configuration](#part-2--provider-configuration)
-- [Part 3 — Cloud-Init Template](#part-3--cloud-init-template)
-- [Part 4 — Deployment](#part-4--deployment)
+- [Part 1 - Proxmox Setup](#part-1--proxmox-setup)
+- [Part 2 - Provider Configuration](#part-2--provider-configuration)
+- [Part 3 - Cloud-Init Template](#part-3--cloud-init-template)
+- [Part 4 - Deployment](#part-4--deployment)
 - [Lessons Learned & Bug Fixes](#️-lessons-learned--bug-fixes)
 
 ---
 
-## ✨ Features
+##  Features
 
 | Feature | Description |
 |---|---|
@@ -27,7 +27,7 @@
 
 ---
 
-## 🔧 Prerequisites
+##  Prerequisites
 
 - Proxmox VE installed and accessible
 - Terraform installed on your local machine
@@ -36,7 +36,7 @@
 
 ---
 
-## Part 1 — Proxmox Setup
+## Part 1 - Proxmox Setup
 
 > **Why this matters:** Never use the `root` account for automation. This section creates a dedicated Terraform user with scoped permissions.
 
@@ -72,11 +72,11 @@ Navigate to **Datacenter → Permissions → API Tokens → Add**:
 
 - Select `terraform-user@pve`
 - Uncheck **"Privilege Separation"** *(simpler for homelabs)*
-- Save the token — **you will only see it once**
+- Save the token - **you will only see it once**
 
 ---
 
-## Part 2 — Provider Configuration
+## Part 2 - Provider Configuration
 
 This project uses the [`bpg/proxmox`](https://registry.terraform.io/providers/bpg/proxmox/latest/docs) Terraform provider. Configure your `provider.tf` with your Proxmox endpoint and API token, then run:
 
@@ -86,9 +86,9 @@ terraform init
 
 ---
 
-## Part 3 — Cloud-Init Template
+## Part 3 - Cloud-Init Template
 
-> Instead of a local ISO, we clone a **pre-installed cloud image** — enabling full automation with no manual OS installation. The template VM cannot be started; it is only used as a clone source.
+> Instead of a local ISO, we clone a **pre-installed cloud image** - enabling full automation with no manual OS installation. The template VM cannot be started; it is only used as a clone source.
 
 Run the following on your **Proxmox host shell**:
 
@@ -113,15 +113,15 @@ qm template 9000
 
 ---
 
-## Part 4 — Deployment
+## Part 4 - Deployment
 
-The core concept in `main.tf` is index-based math — `count.index` increments VM IDs, names, and IP addresses automatically, preventing resource collisions across all cloned VMs.
+The core concept in `main.tf` is index-based math - `count.index` increments VM IDs, names, and IP addresses automatically, preventing resource collisions across all cloned VMs.
 
 ```bash
 # Preview changes
 terraform plan
 
-# Deploy — parallelism=1 prevents Proxmox storage locking
+# Deploy - parallelism=1 prevents Proxmox storage locking
 terraform apply -parallelism=1
 
 # Tear down
@@ -140,7 +140,7 @@ terraform destroy -parallelism=1
 
 ---
 
-### 2. Storage Locking — `lock-xxx.conf timeout`
+### 2. Storage Locking - `lock-xxx.conf timeout`
 
 **Symptom:** Terraform times out during `apply` with a lock conflict.
 
@@ -152,11 +152,11 @@ terraform apply -parallelism=1
 
 ---
 
-### 3. Insufficient Permissions — HTTP 403
+### 3. Insufficient Permissions - HTTP 403
 
 **Symptom:** Terraform returns `403 Forbidden` from the Proxmox API.
 
-**Fix:** Read the error — it names the missing permission. Add it to your role, or via the Proxmox shell:
+**Fix:** Read the error - it names the missing permission. Add it to your role, or via the Proxmox shell:
 
 ```bash
 pveum aclmod / -user terraform-user@pve -role PVEVMAdmin
@@ -191,7 +191,7 @@ terraform apply -var-file="filename.tfvars"
 ├── provider.tf         # Proxmox provider configuration
 ├── main.tf             # VM resource definitions
 ├── variables.tf        # Input variable declarations
-├── terraform.tfvars    # Your actual values — do not commit
+├── terraform.tfvars    # Your actual values - do not commit
 └── outputs.tf          # Output definitions
 ```
 
