@@ -203,13 +203,6 @@ resource "proxmox_virtual_environment_vm" "clone_vm" {
 
 Add an `outputs.tf` to display your deployed infrastructure at a glance:
 
-```hcl
-output "vm_ips" {
-  description = "IP addresses of all deployed VMs"
-  value       = proxmox_virtual_environment_vm.clone_vm[*].initialization[0].ip_config[0].ipv4[0].address
-}
-```
-
 ---
 
 ## ⚠️ Lessons Learned & Bug Fixes
