@@ -1,0 +1,6 @@
+WINDOWS SERVER 2022
+
+Setting up a virtual file server:
+-Download the software from Microsoft
+-Using VMWare set it up and open
+-Set up static IP & use it's IP address as the DNS address also
