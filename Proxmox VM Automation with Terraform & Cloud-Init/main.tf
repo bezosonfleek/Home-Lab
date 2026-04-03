@@ -1,6 +1,6 @@
 resource "proxmox_virtual_environment_vm" "iso_vm" {
     name      = "terraform-test-01"
-    node_name = "var.proxmox_name"        #replace with your node name 
+    node_name = "sakoracorp"        #replace with your node name 
     vm_id     = 104                 #id number in your list
 
     cpu {
