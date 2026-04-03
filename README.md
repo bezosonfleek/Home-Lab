@@ -8,8 +8,8 @@ A collection of projects, configurations, and experiments from my personal home 
 
 | Folder | Description |
 |---|---|
-| [`VM Automation/`](./Proxmox/) | VM automation with Terraform & Cloud-Init on Proxmox VE |
-| [`VM Isolation/`](./Proxmox/) | VM automation with Terraform & Cloud-Init on Proxmox VE |
+| [`VM Automation/`](./Proxmox VM Automation (Terraform & Cloud-Init)/) | VM automation with Terraform & Cloud-Init on Proxmox VE |
+| [`VM Isolation/`](./Proxmox VM Isolation using Linux Bridges/) | VM automation with Terraform & Cloud-Init on Proxmox VE |
 
 > More projects will be added as the lab grows.
 
