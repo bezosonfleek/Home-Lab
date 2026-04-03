@@ -1,6 +1,6 @@
 # VM isolation on Proxmox using Linux bridges
 
-> One-Armed Router architecture on a single physical NIC — isolated, NAT-routed environment for virtual machines.
+> One-Armed Router architecture on a single physical NIC - isolated, NAT-routed environment for virtual machines.
 
 ![Proxmox VE](https://img.shields.io/badge/Proxmox_VE-Networking-blue) ![Linux Bridge](https://img.shields.io/badge/Linux-Bridge-green) ![NAT](https://img.shields.io/badge/NAT-iptables-orange)
 
@@ -24,7 +24,7 @@ Two distinct Linux bridges separate the host's external connectivity from the VM
 | Bridge | Role | Details |
 |--------|------|---------|
 | `vmbr0` | WAN · External | Bridged to physical NIC (`nic0` / `wlp2s0`). Host IP: `192.168.0.102`. Default gateway: `192.168.0.1` |
-| `vmbr1` | LAN · Internal | Virtual-only bridge — no physical port. VM gateway: `10.10.10.1`. Subnet: `10.10.10.0/24` |
+| `vmbr1` | LAN · Internal | Virtual-only bridge - no physical port. VM gateway: `10.10.10.1`. Subnet: `10.10.10.0/24` |
 
 ---
 
@@ -60,7 +60,7 @@ iface vmbr1 inet static
 
 The Proxmox kernel must forward IPv4 packets and masquerade the private `10.10.10.x` range behind the host's public IP.
 
-**Step 1 — Enable IPv4 forwarding:**
+**Step 1 - Enable IPv4 forwarding:**
 
 ```bash
 sysctl -w net.ipv4.ip_forward=1
@@ -68,7 +68,7 @@ sysctl -w net.ipv4.ip_forward=1
 
 > To make this permanent, add `net.ipv4.ip_forward=1` to `/etc/sysctl.conf`.
 
-**Step 2 — Apply the NAT masquerade rule:**
+**Step 2 - Apply the NAT masquerade rule:**
 
 ```bash
 iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -o vmbr0 -j MASQUERADE
@@ -92,7 +92,7 @@ iptables -I FORWARD -s 10.10.10.0/24 -d 192.168.0.0/24 -j REJECT
 iptables -I FORWARD -s 10.10.10.0/24 -d 192.168.0.50 -j ACCEPT
 ```
 
-> **Note:** Insert the `ACCEPT` rule *before* the `REJECT` rule — iptables evaluates rules in order, top to bottom.
+> **Note:** Insert the `ACCEPT` rule *before* the `REJECT` rule - iptables evaluates rules in order, top to bottom.
 
 ---
 
